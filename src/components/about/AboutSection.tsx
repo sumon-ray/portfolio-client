@@ -40,6 +40,7 @@ export default function AboutSection() {
     profileImage: "/profile.png",
   }
 
+  
   const education = [
     {
       id: "1",
