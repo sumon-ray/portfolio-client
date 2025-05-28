@@ -107,7 +107,7 @@ export const deleteSkill = async (id: string) => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/skills/${id}`, {
       method: "DELETE",
-      cache: "no-store", // ডেটা পরিবর্তনের জন্য 'no-store' ঠিক আছে।
+      cache: "no-store", 
     });
 
     if (!res.ok) {
@@ -116,7 +116,7 @@ export const deleteSkill = async (id: string) => {
     }
 
     const data = await res.json();
-    return { success: true, data }; // ডেটা রিটার্ন করা উচিত, শুধু success: true নয়
+    return { success: true, data }; 
   } catch (error) {
     console.error("Error deleting skill:", error);
     return { success: false, error: (error as Error).message || "An unknown error occurred." };

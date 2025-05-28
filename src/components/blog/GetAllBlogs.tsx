@@ -2,7 +2,9 @@
 
 import { BlogType } from "@/app/types/blog";
 import Image from "next/image";
+import Link from "next/link";
 
+// Helper to check if a URL is valid
 const isValidUrl = (url: string | undefined): boolean => {
   if (!url) return false;
   try {
@@ -13,11 +15,22 @@ const isValidUrl = (url: string | undefined): boolean => {
   }
 };
 
+// Helper to strip HTML tags
+const stripHTML = (html: string) => html.replace(/<[^>]*>?/gm, "");
+
 const GetAllBlogs = ({ blogs }: { blogs: BlogType | null }) => {
   const imageSrc = isValidUrl(blogs?.image) ? blogs!.image : "/placeholder.png";
 
+  const previewContent = blogs?.content
+    ? stripHTML(blogs.content).slice(0, 100) + "..."
+    : "";
+
   return (
-    <div  id="blogs" className="w-full max-w-3xl mx-auto bg-white rounded-lg shadow-md overflow-hidden my-6 hover:shadow-lg transition-shadow duration-300">
+    <div
+      id="blogs"
+      className="w-full max-w-3xl mx-auto bg-white rounded-lg shadow-md overflow-hidden my-6 hover:shadow-lg transition-shadow duration-300"
+    >
+      {/* Blog Image */}
       <div className="relative h-64 w-full">
         <Image
           src={imageSrc}
@@ -28,17 +41,31 @@ const GetAllBlogs = ({ blogs }: { blogs: BlogType | null }) => {
           priority
         />
       </div>
+
+      {/* Blog Content */}
       <div className="p-6">
         <h3 className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2">
           {blogs?.title}
         </h3>
-        <div
-          className="text-gray-700 text-sm md:text-base overflow-auto max-h-36"
-          dangerouslySetInnerHTML={{ __html: blogs?.content || "" }}
-        />
-        <p className="mt-4 text-xs text-gray-500 italic">
-          Published on: {new Date(blogs?.createdAt || "").toLocaleDateString()}
+
+        <p className="text-gray-700 text-sm md:text-base max-h-36 overflow-hidden">
+          {previewContent}
         </p>
+
+        <p className="mt-4 text-xs text-gray-500 italic">
+          Published on:{" "}
+          {new Date(blogs?.createdAt || "").toLocaleDateString()}
+        </p>
+
+        {/* Details Button */}
+        <div className="mt-4">
+          <Link
+            href={`/blog/${blogs?._id}`}
+            className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-200 text-sm"
+          >
+            Details
+          </Link>
+        </div>
       </div>
     </div>
   );

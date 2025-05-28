@@ -4,9 +4,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getAllProjects } from "@/services/projectService";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion"; // motion ইম্পোর্ট করা হয়েছে
+import { motion } from "framer-motion";
 
 const SafeImage = ({
   src,
@@ -32,7 +31,7 @@ const SafeImage = ({
   }, [src]);
 
   return (
-    <div id="projects" className="relative w-full h-48 rounded-lg overflow-hidden">
+    <div className="relative w-full h-48 rounded-lg overflow-hidden">
       {!loaded && (
         <Skeleton className="absolute inset-0 w-full h-full rounded-lg" />
       )}
@@ -48,9 +47,9 @@ const SafeImage = ({
         onError={() => {
           console.warn(`Image failed to load: ${src}`);
           setError(true);
-          setLoaded(true); // Stop showing skeleton
+          setLoaded(true);
         }}
-        unoptimized // remove if you have proper domains setup in next.config.js
+        unoptimized
       />
     </div>
   );
@@ -58,14 +57,11 @@ const SafeImage = ({
 
 const GetAllProjects = () => {
   const [projects, setProjects] = useState<any[]>([]);
-  const router = useRouter(); // যদিও router ব্যবহার করা হচ্ছে না, এখানে রাখা হলো
 
   useEffect(() => {
     const fetchProjects = async () => {
-      // লোডিং স্টেট সেট করা যেতে পারে এখানে
       const result = await getAllProjects();
       setProjects(result?.data || []);
-      // লোডিং স্টেট অফ করা যেতে পারে এখানে
     };
 
     fetchProjects();
@@ -97,20 +93,27 @@ const GetAllProjects = () => {
                          transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl
                          flex flex-col h-full overflow-hidden relative group"
             >
-              {/* Overlay for subtle hover effect - আরও প্রিমিয়াম লুকের জন্য */}
+              {/* Hover overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></div>
 
-              <SafeImage
-                src={project?.image || ""}
-                alt={project.title}
-                width={600}
-                height={350}
-              />
+              {/* 👉 SafeImage wrapped in Link */}
+              <Link href={`project/${project._id}`}>
+                <SafeImage
+                  src={project?.image || ""}
+                  alt={project.title}
+                  width={600}
+                  height={350}
+                />
+              </Link>
 
               <div className="flex flex-col flex-grow mt-4">
-                <h3 className="text-xl font-bold text-gray-900 mb-2 leading-tight">
-                  {project.title}
-                </h3>
+                {/* 👉 Title wrapped in Link */}
+                <Link href={`project/${project._id}`} className="block">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2 leading-tight hover:underline">
+                    {project.title}
+                  </h3>
+                </Link>
+
                 <p className="text-gray-700 text-sm mb-4 flex-grow line-clamp-3">
                   {project.description}
                 </p>
@@ -133,7 +136,7 @@ const GetAllProjects = () => {
                     className="inline-flex items-center text-blue-700 hover:text-blue-900 font-semibold transition-colors duration-200"
                   >
                     Live Site
-                    <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                   </Link>
                   <Link
                     href={project.githubLink}
@@ -141,7 +144,7 @@ const GetAllProjects = () => {
                     className="inline-flex items-center text-gray-700 hover:text-gray-900 font-semibold transition-colors duration-200"
                   >
                     GitHub
-                    <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                   </Link>
                 </div>
               </div>

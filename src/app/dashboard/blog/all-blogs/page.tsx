@@ -7,29 +7,31 @@ const AllBlogPage = async () => {
   const blogs = res?.data ?? [];
 
   return (
-   <>
-    <div
-    // initial={{ opacity: 0, y: 20 }}
-    // animate={{ opacity: 1, y: 0 }}
-    // transition={{ duration: 0.5 }}
-    className="flex flex-col gap-2 mb-12 text-center"
-  >
-    <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-      My Blogs
-    </h2>
-    <p className="text-muted-foreground max-w-2xl mx-auto">
-      A showcase of my writting blogs and technical expertise
-    </p>
-  </div>
-    <div className="p-4  mx-auto w-full grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-      
-      {blogs.length > 0 ? (
-        blogs.map((blog: BlogType) => <GetAllBlogs key={blog._id} blogs={blog} />)
-      ) : (
-        <p className="text-center col-span-full">No blogs found.</p>
-      )}
-    </div>
-   </>
+    <>
+      <div
+        // initial={{ opacity: 0, y: 20 }} // These are commented out, likely for Framer Motion
+        // animate={{ opacity: 1, y: 0 }}
+        // transition={{ duration: 0.5 }}
+        className="flex flex-col gap-2 mb-12 text-center"
+      >
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          My Blogs
+        </h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          A showcase of my writing blogs and technical expertise
+        </p>
+      </div>
+      <div className="p-4 mx-auto w-full grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {blogs.length > 0 ? (
+          blogs.map((blog: BlogType) => (
+            // Wrap GetAllBlogs with Link
+              <GetAllBlogs key={blog._id} blogs={blog} />
+          ))
+        ) : (
+          <p className="text-center col-span-full">No blogs found.</p>
+        )}
+      </div>
+    </>
   );
 };
 

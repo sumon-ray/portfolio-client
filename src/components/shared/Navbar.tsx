@@ -106,7 +106,7 @@ export default function Navbar() {
         >
           <Link href="/" className="flex items-center">
             {/* <Image src="/logo.png" alt="Logo" width={40} height={40} className="object-contain" priority /> */}
-             <span className="text-xl font-bold">Sumon</span> {/* Placeholder logo */}
+             {/* <span className="text-xl font-bold">Sumon</span> Placeholder logo */}
           </Link>
         </motion.div>
 
