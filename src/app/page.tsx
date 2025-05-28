@@ -3,20 +3,22 @@
 // import AnimatedText from "@/components/AnimatedText"
 // import FloatingIcons from "@/components/FloatingIcons"
 
-import HeroSection from "@/components/hero/HeroSection";
-import GetAllProjects from "@/components/project/getAllProjects";
-import AllSkillPage from "./dashboard/skills/all-skills/page";
+import ClientWrapper from "@/components/ClientWrapper";
 import AboutSection from "@/components/about/AboutSection";
 import ContactForm from "@/components/contact/ContactForm";
+import HeroSection from "@/components/hero/HeroSection";
+import GetAllProjects from "@/components/project/getAllProjects";
+import Navbar from "@/components/shared/Navbar";
 import AllBlogPage from "./dashboard/blog/all-blogs/page";
-// import Navbar from "@/components/shared/Navbar";
+import AllSkillPage from "./dashboard/skills/all-skills/page";
 
 export default function HomePage() {
 
 
   return (
      <>
-        {/* <Navbar /> */}
+<ClientWrapper>
+        <Navbar />
 
      <HeroSection />
      <AboutSection />
@@ -24,6 +26,7 @@ export default function HomePage() {
      <AllSkillPage />
      <AllBlogPage />
      <ContactForm />
+</ClientWrapper>
      </>
   )
 }

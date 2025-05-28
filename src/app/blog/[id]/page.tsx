@@ -7,9 +7,9 @@ import Link from "next/link";
 const BlogDetailsPage = async ({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) => {
-  const { id } = params;
+  const { id } = await params;
   const res = await getBlogById(id);
   const data: BlogType | null = (await res?.data) ?? null;
 

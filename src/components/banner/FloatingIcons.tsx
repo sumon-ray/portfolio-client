@@ -14,13 +14,13 @@ interface FloatingIcon {
 
 export default function FloatingIcons() {
   const icons: FloatingIcon[] = [
-    // {
-    //   icon: <Code className="h-6 w-6 text-blue-500" />,
-    //   x: "10%",
-    //   y: "20%",
-    //   delay: 1.2,
-    //   duration: 8,
-    // },
+    {
+      icon: <Code className="h-6 w-6 text-blue-500" />,
+      x: "10.5%",
+      y: "22.8%", 
+      delay: 1.2,
+      duration: 8,
+    },
     {
       icon: <Figma className="h-6 w-6 text-purple-500" />,
       x: "85%",
@@ -44,8 +44,8 @@ export default function FloatingIcons() {
     },
     {
       icon: <FileCode className="h-6 w-6 text-red-500" />,
-      x: "50%",
-      y: "85%",
+      x: "80%",
+      y: "50%",
       delay: 2.4,
       duration: 11,
     },

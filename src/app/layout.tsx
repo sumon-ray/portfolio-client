@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import type React from "react";
 import "./globals.css";
 // import { ThemeProvider } from "@/components/theme-provider"
-import Navbar from "@/components/shared/Navbar";
+// import Navbar from "@/components/shared/Navbar";
 import { Toaster } from "sonner";
 // import Navbar from "@/components/Navbar/Navbar"
 
@@ -22,9 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="">
-      <body className={inter.className }>
+      <body className={inter.className}>
         {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange> */}
-        <Navbar />
+        {/* <Navbar /> */}
         <main className=" text-white bg-[#171b39] ">{children}</main>
         {/* </ThemeProvider> */}
         <Toaster position="top-right" richColors />

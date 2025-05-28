@@ -35,6 +35,7 @@ export const previewResume = async (): Promise<ApiResponse<any> | null> => {
     if (!res.ok) return null;
 
     const data: ApiResponse<any> = await res.json();
+    // console.log(data)
     return data;
   } catch (error) {
     console.error("Failed to preview resume:", error);
