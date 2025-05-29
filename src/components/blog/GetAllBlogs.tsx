@@ -28,7 +28,7 @@ const GetAllBlogs = ({ blogs }: { blogs: BlogType | null }) => {
   return (
     <div
       id="blogs"
-      className="w-full max-w-3xl mx-auto bg-white rounded-lg shadow-md overflow-hidden my-6 hover:shadow-lg transition-shadow duration-300"
+      className="w-full max-w-3xl mx-auto bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 text-white rounded-lg shadow-md overflow-hidden my-6 hover:shadow-lg transition-shadow duration-300"
     >
       {/* Blog Image */}
       <div className="relative h-64 w-full">
@@ -44,11 +44,11 @@ const GetAllBlogs = ({ blogs }: { blogs: BlogType | null }) => {
 
       {/* Blog Content */}
       <div className="p-6">
-        <h3 className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2">
+        <h3 className="text-2xl font-bold text-gray-100 mb-3 line-clamp-2">
           {blogs?.title}
         </h3>
 
-        <p className="text-gray-700 text-sm md:text-base max-h-36 overflow-hidden">
+        <p className="text-gray-100/50 text-sm md:text-base max-h-36 overflow-hidden">
           {previewContent}
         </p>
 
