@@ -21,28 +21,30 @@ import { downloadResume, previewResume } from "@/services/resumeService";
 
 const HeroSection = () => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  console.log(previewUrl);
-  // const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   useEffect(() => {
     const getPreview = async () => {
       const res = await previewResume();
-      setPreviewUrl(res?.data ?? null);
+      // Ensure res.data is actually a string URL
+      if (res && res.data && typeof res.data === 'string') {
+        setPreviewUrl(res.data);
+      } else {
+        console.error("Preview resume data is not a valid URL:", res);
+      }
     };
     getPreview();
-  }, []); // শুধু একবার মাউন্টে রান হবে
-  // bg-gradient-to-b from-blue-50 to-blue-100
+  }, []);
+
   return (
     <div className="relative overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0  dark:from-slate-950 dark:to-slate-900 -z-10" />
+      <div className="absolute inset-0 dark:from-slate-950 dark:to-slate-900 -z-10" />
 
       {/* Hero section */}
       <section className="relative pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden">
         <div className="container px-4 md:px-6">
           <div className="grid gap-8 md:grid-cols-2 md:gap-12 items-center">
             {/* Left column - Text content */}
-
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -50,7 +52,6 @@ const HeroSection = () => {
               className="relative flex flex-col gap-4"
             >
               {/* Animated robot container */}
-
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -96,9 +97,10 @@ const HeroSection = () => {
                   <MessageSquare className="h-4 w-4" />
                   Schedule a meeting
                 </Button>
-                <Button variant="outline" asChild>
+                {/* Preview Resume Button */}
+                <Button variant="outline" asChild disabled={!previewUrl}>
                   <Link
-                    href={previewUrl ?? "#"}
+                    href={previewUrl || "#"} // Use previewUrl, fallback to # if null
                     target="_blank"
                     className="gap-2 text-black border-primary/20 hover:bg-primary/10 hover:text-white transition-all"
                   >
@@ -106,15 +108,14 @@ const HeroSection = () => {
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
-                <Button variant="outline" asChild onClick={downloadResume}>
-                  <Link
-                    href={previewUrl ?? "#"}
-                    target="_blank"
-                    className="gap-2 text-black border-primary/20 hover:bg-primary/10 hover:text-white transition-all "
-                  >
-                    download
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
+                {/* Download Resume Button */}
+                <Button
+                  variant="outline"
+                  onClick={downloadResume} // Directly call downloadResume on click
+                  className="gap-2 text-black border-primary/20 hover:bg-primary/10 hover:text-white transition-all"
+                >
+                  Download resume
+                  <ArrowRight className="h-4 w-4" />
                 </Button>
               </motion.div>
 
@@ -180,44 +181,15 @@ const HeroSection = () => {
                     priority
                   />
                 </div>
-
-                {/* stats card */}
-
-                {/* <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1, duration: 0.5 }}
-                  className="hidden md:flex absolute bottom-10 -left-10 md:-left-25 top-40"
-                >
-                  <StatCard
-                    value={3}
-                    label="Courses Completed" // অথবা "Personal Projects"
-                    delay={1.4}
-                    className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md"
-                  />
-                </motion.div> */}
-                {/* <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1, duration: 0.5 }}
-                  className="absolute bottom-10 -left-10 md:-left-20"
-                >
-                  <StatCard
-                    value={5} // আপনার প্রজেক্টের সংখ্যা
-                    label="Projects Completed" // অথবা "Personal Projects"
-                    delay={1.4}
-                    className="hidden md:flex  bg-white/80 dark:bg-slate-800/80 backdrop-blur-md"
-                  />
-                </motion.div> */}
               </motion.div>
             </div>
           </div>
         </div>
 
         {/* Floating icons */}
-      <div className="hidden md:flex">
-      <FloatingIcons  />
-      </div>
+        <div className="hidden md:flex">
+          <FloatingIcons />
+        </div>
       </section>
     </div>
   );

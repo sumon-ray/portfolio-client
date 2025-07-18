@@ -3,7 +3,7 @@
 // import AnimatedText from "@/components/AnimatedText"
 // import FloatingIcons from "@/components/FloatingIcons"
 
-import ClientWrapper from "@/components/ClientWrapper";
+// import ClientWrapper from "@/components/ClientWrapper";
 import AboutSection from "@/components/about/AboutSection";
 import ContactForm from "@/components/contact/ContactForm";
 import HeroSection from "@/components/hero/HeroSection";
@@ -17,7 +17,7 @@ export default function HomePage() {
 
   return (
      <>
-<ClientWrapper>
+{/* <ClientWrapper> */}
         <Navbar />
 
      <HeroSection />
@@ -26,7 +26,7 @@ export default function HomePage() {
      <AllSkillPage />
      <AllBlogPage />
      <ContactForm />
-</ClientWrapper>
+{/* </ClientWrapper> */}
      </>
   )
 }
