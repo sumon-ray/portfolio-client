@@ -191,6 +191,212 @@ PUT  /api/exchanges/:id    - Update exchange status
 - **Rate Limiting**: API endpoint protection
 - **Secure File Upload**: Validated and processed image uploads
 
+## 📁 Folder Structure
+
+  src/
+├── app/
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── (auth)/
+│   │   ├── layout.tsx
+│   │   ├── forget-password/page.tsx
+│   │   ├── login/page.tsx
+│   │   ├── register/page.tsx
+│   │   └── reset-password/page.tsx
+│   ├── (commonLayout)/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   ├── about/page.tsx
+│   │   ├── contact/page.tsx
+│   │   └── events/
+│   │       ├── page.tsx
+│   │       ├── create-event/page.tsx
+│   │       ├── update-event/[slug]/page.tsx
+│   │       └── [slug]/page.tsx
+│   ├── (withLoginUser)/
+│   │   ├── payments/success/[tranId]/page.tsx
+│   │   └── profile/
+│   │       ├── layout.tsx
+│   │       ├── my-events/
+│   │       │   ├── page.tsx
+│   │       │   └── add-event/page.tsx
+│   │       ├── my-received-invites/page.tsx
+│   │       ├── payments-history/page.tsx
+│   │       ├── personal-info/page.tsx
+│   │       ├── privacy_and_security/page.tsx
+│   │       └── review/page.tsx
+│   ├── admin/
+│   │   ├── layout.tsx
+│   │   ├── dashboard/page.tsx
+│   │   ├── manage-invites/
+│   │   │   ├── all-invites/page.tsx
+│   │   │   └── sent-invites/page.tsx
+│   │   ├── manage-payments/page.tsx
+│   │   ├── products/
+│   │   │   ├── add-event/page.tsx
+│   │   │   └── event-list/page.tsx
+│   │   ├── review/page.tsx
+│   │   └── user/page.tsx
+│   ├── api/auth/[...nextauth]/route.ts
+│   ├── types/
+│   │   ├── event.type.ts
+│   │   ├── forgetPassword.ts
+│   │   ├── payment.type.ts
+│   │   ├── resetPassword.ts
+│   │   ├── reviewType.ts
+│   │   ├── TokenUser.type.ts
+│   │   ├── user.type.ts
+│   │   └── userRowProps.ts
+│   └── utils/
+│       ├── auth.ts
+│       └── authOptions.ts
+│
+├── components/
+│   ├── about/
+│   │   ├── animated-icon.tsx
+│   │   ├── cta-section.tsx
+│   │   ├── faq-section.tsx
+│   │   ├── features-section.tsx
+│   │   ├── hero-section.tsx
+│   │   ├── misson-section.tsx
+│   │   ├── story-section.tsx
+│   │   ├── team-section.tsx
+│   │   ├── testimonial-section.tsx
+│   │   └── values-section.tsx
+│   ├── contact/
+│   │   ├── animated-background.tsx
+│   │   ├── animated-icon.tsx
+│   │   ├── floating-particles.tsx
+│   │   ├── hero-section.tsx
+│   │   ├── interactive-map.tsx
+│   │   ├── live-chat-widget.tsx
+│   │   ├── premium-contact-form.tsx
+│   │   ├── premium-hero.tsx
+│   │   ├── social-connect.tsx
+│   │   └── social-icon.tsx
+│   ├── footer/
+│   │   └── CountdownTimer.tsx
+│   ├── MobileSidebar/
+│   │   └── MobileSidebar.tsx
+│   ├── modules/
+│   │   ├── adminDashboard/
+│   │   │   ├── nav-main.tsx
+│   │   │   └── analytics/page.tsx
+│   │   ├── Auth/
+│   │   │   ├── login/
+│   │   │   │   ├── ForgotPassword.tsx
+│   │   │   │   ├── LoginForm.tsx
+│   │   │   │   └── loginValidation.ts
+│   │   │   └── register/
+│   │   │       ├── RegisterForm.tsx
+│   │   │       └── registerValidation.ts
+│   │   ├── Banner/Banner.tsx
+│   │   ├── Categories/Categories.tsx
+│   │   ├── Events/
+│   │   │   ├── Card.tsx
+│   │   │   ├── CreateEvent.tsx
+│   │   │   ├── DeleteModal.tsx
+│   │   │   ├── EventDetails.tsx
+│   │   │   ├── HomeAllEvents.tsx
+│   │   │   ├── MyEvents.tsx
+│   │   │   ├── ParticipantsTable.tsx
+│   │   │   ├── ShowParticipantsModal.tsx
+│   │   │   ├── UpdateEvent.tsx
+│   │   │   ├── UpdateModal.tsx
+│   │   ├── FAQ/FAQ.tsx
+│   │   ├── Invite/
+│   │   │   ├── InviteModal.tsx
+│   │   │   ├── InviteTable.tsx
+│   │   │   └── MyReceivedInvite.tsx
+│   │   ├── OurAdvantage/OurAdvantage.tsx
+│   │   ├── OurServices/OurService.tsx
+│   │   ├── Payment/
+│   │   │   ├── ManagePaymentsTable.tsx
+│   │   │   ├── MyPaymentsHistory.tsx
+│   │   │   └── PaymentSuccess.tsx
+│   │   ├── Profile/
+│   │   │   ├── ProfileMainLayout.tsx
+│   │   │   ├── change-password/
+│   │   │   │   ├── password-requirements.tsx
+│   │   │   │   ├── password-strength-meter.tsx
+│   │   │   │   ├── password-tips.tsx
+│   │   │   │   ├── PasswordChange.tsx
+│   │   │   │   └── success-animation.tsx
+│   │   │   ├── personal-info/
+│   │   │   │   ├── PersonalInfoComponent.tsx
+│   │   │   │   └── profileValidation.ts
+│   │   │   └── profile-sidebar/
+│   │   │       ├── MobileSidebar.tsx
+│   │   │       └── Sidebar.tsx
+│   │   ├── Review/
+│   │   │   ├── MyReview.tsx
+│   │   │   ├── ReviewCard.tsx
+│   │   │   ├── ReviewForm.tsx
+│   │   │   ├── updateReviewForm.tsx
+│   │   │   └── SpecificEventReview/
+│   │   │       ├── EventReviewReview.tsx
+│   │   │       ├── ReviewButton.tsx
+│   │   │       └── ReviewCarousal.tsx
+│   │   ├── ReviewRow/
+│   │   │   ├── ReviewDetailModal.tsx
+│   │   │   └── ReviewRow.tsx
+│   │   ├── UserRow/UserRow.tsx
+│   │   └── WhoWeAre/WhoRWe.tsx
+│   ├── shared/
+│   │   ├── app-sidebar.tsx
+│   │   ├── Footer.tsx
+│   │   ├── HeroSecton.tsx
+│   │   ├── Navbar.tsx
+│   │   ├── NextButton.tsx
+│   │   ├── premium-event-card.tsx
+│   │   ├── Profile-sidebar.tsx
+│   │   ├── ProfileAvatar.tsx
+│   │   └── Title.tsx
+│   └── ui/
+│       ├── accordion.tsx
+│       ├── alert-dialog.tsx
+│       ├── avatar.tsx
+│       ├── badge.tsx
+│       ├── breadcrumb.tsx
+│       ├── button.tsx
+│       ├── calendar.tsx
+│       ├── card.tsx
+│       ├── carousel.tsx
+│       ├── checkbox.tsx
+│       ├── collapsible.tsx
+│       ├── dialog.tsx
+│       ├── dropdown-menu.tsx
+│       ├── form.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       ├── navigation-menu.tsx
+│       ├── progress.tsx
+│       ├── select.tsx
+│       ├── separator.tsx
+│       ├── sheet.tsx
+│       ├── sidebar.tsx
+│       ├── skeleton.tsx
+│       ├── slider.tsx
+│       ├── sonner.tsx
+│       ├── switch.tsx
+│       ├── table.tsx
+│       ├── tabs.tsx
+│       ├── textarea.tsx
+│       └── tooltip.tsx
+│       └── Loader/
+│           ├── Loader.css
+│           └── Loader.tsx
+│
+└── services/
+    ├── AuthService/index.ts
+    ├── EventService/index.ts
+    ├── InviteService/index.ts
+    ├── PaymentService/index.ts
+    ├── ProfileService/index.ts
+    ├── ReviewService/index.ts
+    └── UserService/index.ts
+
+
 ## 🚀 Performance Optimizations
 
 - **SSR/SSG**: Optimized rendering strategies
