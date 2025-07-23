@@ -14,10 +14,10 @@ const AllBlogPage = async () => {
         // transition={{ duration: 0.5 }}
         className="flex flex-col gap-2 mb-12 text-center"
       >
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+        <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-white via-blue-300 to-purple-300 bg-clip-text text-transparent tracking-tight sm:text-4xl">
           My Blogs
         </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
+        <p className="mt-2 text-muted-foreground max-w-2xl mx-auto">
           A showcase of my writing blogs and technical expertise
         </p>
       </div>

@@ -11,13 +11,14 @@ import GetAllProjects from "@/components/project/getAllProjects";
 import Navbar from "@/components/shared/Navbar";
 import AllBlogPage from "./dashboard/blog/all-blogs/page";
 import AllSkillPage from "./dashboard/skills/all-skills/page";
+import ClientWrapper from "@/components/ClientWrapper";
 
 export default function HomePage() {
 
 
   return (
      <>
-{/* <ClientWrapper> */}
+<ClientWrapper>
         <Navbar />
 
      <HeroSection />
@@ -26,7 +27,7 @@ export default function HomePage() {
      <AllSkillPage />
      <AllBlogPage />
      <ContactForm />
-{/* </ClientWrapper> */}
+</ClientWrapper>
      </>
   )
 }

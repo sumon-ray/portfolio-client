@@ -6,11 +6,7 @@ interface BentoGridProps extends ComponentPropsWithoutRef<"div"> {
   className?: string;
 }
 
-export function BentoGrid({
-  className,
-  children,
-  ...props
-}: BentoGridProps) {
+export function BentoGrid({ className, children, ...props }: BentoGridProps) {
   return (
     <div
       {...props}
@@ -46,12 +42,12 @@ export function BentoCard({
     <div
       {...props}
       className={cn(
-        "group relative flex flex-col justify-between overflow-hidden rounded-xl border bg-background p-4 shadow-md transition-shadow hover:shadow-lg",
+        "group relative flex flex-col justify-between overflow-hidden rounded-xl border bg-background p-4 shadow-md transition-shadow hover:shadow-lg min-h-[12rem]",
         className
       )}
     >
       {/* Background sits beneath */}
-      <div className="absolute inset-0 -z-10">{background}</div>
+      <div className="absolute inset-0 -z-10 h-full w-full">{background}</div>
 
       {/* Content moves up on hover */}
       <div className="z-10 flex flex-col gap-2 transition-transform duration-300 group-hover:-translate-y-8">

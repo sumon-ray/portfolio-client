@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 interface PersonalInfo {
-  name: string
-  title: string
-  bio: string
-  location: string
-  email: string
-  phone: string
-  languages: string[]
-  interests: string[]
-  profileImage: string
+  name: string;
+  title: string;
+  bio: string;
+  location: string;
+  email: string;
+  phone: string;
+  languages: string[];
+  interests: string[];
+  profileImage: string;
 }
 
 interface AboutMeTabProps {
-  personalInfo: PersonalInfo
+  personalInfo: PersonalInfo;
 }
 
 export default function AboutMeTab({ personalInfo }: AboutMeTabProps) {
@@ -28,7 +28,9 @@ export default function AboutMeTab({ personalInfo }: AboutMeTabProps) {
       className="space-y-6 text-slate-300"
     >
       <div>
-        <h3 className="text-2xl font-bold text-white mb-4">Hello, I'm {personalInfo.name}!</h3>
+        <h3 className="text-2xl font-bold text-white mb-4">
+          Hello, I'm {personalInfo.name}!
+        </h3>
         <p className=" leading-relaxed">{personalInfo.bio}</p>
       </div>
 
@@ -71,17 +73,20 @@ export default function AboutMeTab({ personalInfo }: AboutMeTabProps) {
 
       <div>
         <h4 className="text-lg font-semibold text-white mb-3">My Approach</h4>
-        <p className=" leading-relaxed">
-          I believe in creating clean, efficient, and user-friendly applications that solve real problems. My
-          development philosophy centers around writing maintainable code, embracing best practices, and continuously
-          learning new technologies to stay at the forefront of web development.
+        <p className="leading-relaxed">
+          As a full-stack developer, I strive to build robust, scalable, and
+          user-focused applications that deliver real-world value. My approach
+          emphasizes clean and maintainable code, performance optimization, and
+          thoughtful design from backend architecture to frontend interfaces.
         </p>
-        <p className=" leading-relaxed mt-3">
-          Whether working independently or as part of a team, I bring dedication, creativity, and technical expertise to
-          every project I undertake. I'm passionate about creating digital experiences that are not only functional but
-          also aesthetically pleasing and intuitive to use.
+        <p className="leading-relaxed mt-3">
+          I take pride in combining technical expertise with creative
+          problem-solving, whether working independently or in a collaborative
+          environment. I'm committed to continuous learning and staying updated
+          with the latest tools and technologies to craft seamless, modern web
+          experiences that are both functional and visually engaging.
         </p>
       </div>
     </motion.div>
-  )
+  );
 }

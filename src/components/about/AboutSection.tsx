@@ -46,19 +46,16 @@ export default function AboutSection() {
       id: "1",
       degree: "BBA In Management",
       institution: "Mawlana Bhashani Science University",
-      location: "San Francisco, CA",
-      period: "2018 - 2022",
-      gpa: "3.8/4.0",
-      description: "Specialized in Web Development and Human-Computer Interaction. Graduated with honors.",
+      location: "Tangail, Dhaka",
+      period: "2022 - 2026",
+      // description: ""
     },
     {
       id: "2",
-      degree: "High School Diploma",
-      institution: "Lincoln High School",
-      location: "San Francisco, CA",
-      period: "2014 - 2018",
-      gpa: "3.9/4.0",
-      description: "Advanced Placement in Computer Science and Mathematics. Member of the Robotics Club.",
+      degree: "High Secondary School ",
+      institution: "Pakerhat Govtment College",
+      location: "Khanshama Thana",
+      period: "2020 - 2021",
     },
   ]
 

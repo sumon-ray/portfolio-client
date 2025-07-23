@@ -101,7 +101,7 @@ const HeroSection = () => {
                 <Button variant="outline" asChild disabled={!previewUrl}>
                   <Link
                     href={previewUrl || "#"} // Use previewUrl, fallback to # if null
-                    target="_blank"
+                    // target="_blank"
                     className="gap-2 text-black border-primary/20 hover:bg-primary/10 hover:text-white transition-all"
                   >
                     Preview resume

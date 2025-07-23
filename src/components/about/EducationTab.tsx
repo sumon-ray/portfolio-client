@@ -8,8 +8,7 @@ interface Education {
   institution: string
   location: string
   period: string
-  gpa: string
-  description: string
+  // gpa: string
 }
 
 interface EducationTabProps {
@@ -57,12 +56,14 @@ export default function EducationTab({ education }: EducationTabProps) {
               </div>
 
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-sm font-medium text-slate-400">GPA:</span>
-                <span className="px-2 py-0.5 bg-slate-700/50 rounded-md text-cyan-400 text-sm">{item.gpa}</span>
+                {/* <span className="text-sm font-medium text-slate-400">GPA:</span> */}
+                {/* <span className="px-2 py-0.5 bg-slate-700/50 rounded-md text-cyan-400 text-sm">{item.gpa}</span> */}
               </div>
 
-              <p className="text-slate-300 text-sm">{item.description}</p>
+              {/* <p className="text-slate-300 text-sm">{item.description}</p> */}
             </div>
+
+
           </motion.div>
         ))}
       </div>

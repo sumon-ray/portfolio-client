@@ -80,7 +80,7 @@ export default function ContactForm() {
       <FloatingParticles />
 
       {/* Content container */}
-      <div className="w-full max-w-3xl relative z-10">
+      <div className="w-full max-w-3xl relative z-10 bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-xl rounded-2xl">
         <AnimatePresence mode="wait">
           {!isFormSubmitted ? (
             <motion.div
@@ -178,7 +178,7 @@ export default function ContactForm() {
                   type="submit"
                   disabled={isSubmitting}
                   // Button styles for light theme: primary accent color
-                  className="w-full h-16 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold text-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full h-16 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-semibold text-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center gap-2">

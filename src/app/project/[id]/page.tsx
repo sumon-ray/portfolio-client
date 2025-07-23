@@ -1,106 +1,259 @@
-// src/app/project/[id]/page.tsx
-import { IProject } from "@/app/types/project"; // Ensure this path and interface name are correct
-import { getProjectById } from "@/services/projectService";
-import Link from "next/link";
+import type { IProject } from "@/app/types/project"
+import { getProjectById } from "@/services/projectService"
+import Link from "next/link"
+import {
+  ArrowLeftIcon,
+  ExternalLinkIcon,
+  GitHubLogoIcon,
+  CalendarIcon,
+  ClockIcon,
+  StarIcon,
+} from "@radix-ui/react-icons"
 
-// The dynamic route segment component
-const ProjectDetailsPage = async ({ 
-    params 
-}: { 
-    params: Promise<{ id: string }>; 
+const ProjectDetailsPage = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>
 }) => {
-    const resolvedParams = await params; 
-    const { id } = resolvedParams; 
+  const resolvedParams = await params
+  const { id } = resolvedParams
 
+  // Fetch project data using the id
+  const res = await getProjectById(id)
+  const project: IProject | null = res?.data || null
 
-    // Fetch project data using the id
-    const res = await getProjectById(id);
-    const project: IProject | null = res?.data || null;
-
-
-    if (!project) {
-        return (
-            <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white p-8">
-                <h1 className="text-4xl font-bold text-red-500 mb-4">Project Not Found!</h1>
-                <p className="text-lg mb-6">দুঃখিত, এই ID এর সাথে কোনো প্রোজেক্ট পাওয়া যায়নি।</p>
-                <Link href="/" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
-                    হোম পেজে ফিরে যান
-                </Link>
-            </div>
-        );
-    }
-
-    // Render the project details if found
+  if (!project) {
     return (
-        <div className="min-h-screen bg-gray-950 text-gray-100 p-6 sm:p-10">
-            <div className="max-w-6xl mx-auto bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-700">
-                {/* Back button */}
-                <div className="p-6">
-                    <Link href="/" className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                        হোম পেজে ফিরে যান
-                    </Link>
-                </div>
-
-                {/* Project Content */}
-                <div className="p-6 sm:p-10 lg:p-12">
-                    <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 text-indigo-400 leading-tight">
-                        {project.title}
-                    </h1>
-                    <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-auto rounded-xl shadow-lg mb-8 border border-gray-700 object-cover"
-                    />
-                    <p className="text-lg sm:text-xl mb-8 text-gray-300 leading-relaxed">
-                        {project.description}
-                    </p>
-
-                    <div className="mb-6">
-                        <h3 className="text-xl font-semibold text-gray-200 mb-2">প্রযুক্তি সমূহ:</h3>
-                        <div className="flex flex-wrap gap-2">
-                            {project.technologies?.map((tech, index) => (
-                                <span key={index} className="bg-blue-700 text-blue-100 text-sm font-medium px-4 py-1.5 rounded-full shadow-md">
-                                    {tech}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="flex flex-wrap gap-4 mt-8">
-                        {project.liveLink && (
-                            <a
-                                href={project.liveLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors duration-300 shadow-md font-semibold text-lg"
-                            >
-                                লাইভ সাইট দেখুন
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M11 3a1 1 101-1h5a1 1 001 1v5a1 1 001 1-2 0V6.414l-8.293 8.293a1 1 001-1.414L14.586 5H11a1 1 001-1z" />
-                                </svg>
-                            </a>
-                        )}
-                        {project.githubLink && (
-                            <a
-                                href={project.githubLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center bg-gray-700 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors duration-300 shadow-md font-semibold text-lg"
-                            >
-                                GitHub দেখুন
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fillRule="evenodd" d="M10 0a10 10 0 100 20 10 10 0 000-20zm-2 15a2 2 0 100-4 2 2 0 000 4zm5-2a2 2 0 100-4 2 2 0 000 4zm-4-7a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                                </svg>
-                            </a>
-                        )}
-                    </div>
-                </div>
-            </div>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#171b39] text-white p-8">
+        <div className="text-center space-y-6">
+          <div className="w-24 h-24 mx-auto bg-red-500/20 rounded-full flex items-center justify-center mb-6">
+            <StarIcon className="w-12 h-12 text-red-400" />
+          </div>
+          <h1 className="text-4xl font-bold text-red-400 mb-4">Project Not Found!</h1>
+          <p className="text-lg text-gray-300 mb-8">
+            The project you're looking for doesn't exist or has been removed.
+          </p>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105"
+          >
+            <ArrowLeftIcon className="w-5 h-5" />
+            Back to Home
+          </Link>
         </div>
-    );
-};
+      </div>
+    )
+  }
 
-export default ProjectDetailsPage;
+  return (
+    <div className="min-h-screen bg-[#171b39]">
+      {/* Navigation */}
+      <nav className="sticky top-0 z-50 bg-[#171b39]/80 backdrop-blur-xl border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors duration-200 group"
+            >
+              <ArrowLeftIcon className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
+              <span className="font-medium">Back to Projects</span>
+            </Link>
+
+            <div className="flex items-center gap-4">
+              {project.liveLink && (
+                <a
+                  href={project.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200"
+                >
+                  <ExternalLinkIcon className="w-4 h-4" />
+                  <span className="hidden sm:inline">Live Demo</span>
+                </a>
+              )}
+              {project.githubLink && (
+                <a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors duration-200"
+                >
+                  <GitHubLogoIcon className="w-4 h-4" />
+                  <span className="hidden sm:inline">Source</span>
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <div className="relative h-[60vh] overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={project.image || "/placeholder.svg"} alt={project.title} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#171b39] via-[#171b39]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-pink-900/20" />
+        </div>
+
+        <div className="relative h-full flex items-end">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 w-full">
+            <div className="max-w-4xl">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-purple-300 text-sm font-medium mb-6 border border-white/20">
+                <StarIcon className="w-4 h-4" />
+                Featured Project
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                {project.title}
+              </h1>
+
+              <p className="text-xl text-gray-200 leading-relaxed max-w-3xl">{project.description}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Content Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* Project Overview */}
+            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
+              <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                  <StarIcon className="w-4 h-4 text-white" />
+                </div>
+                Project Overview
+              </h2>
+
+              <div className="prose prose-invert max-w-none">
+                <p className="text-gray-300 text-lg leading-relaxed">{project.description}</p>
+              </div>
+            </div>
+
+            {/* Project Image Gallery */}
+            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
+              <h2 className="text-2xl font-bold text-white mb-6">Project Showcase</h2>
+
+              <div className="relative group">
+                <img
+                  src={project.image || "/placeholder.svg"}
+                  alt={project.title}
+                  className="w-full h-auto rounded-xl shadow-2xl border border-white/20 transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            </div>
+
+            {/* Features Section */}
+            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
+              <h2 className="text-2xl font-bold text-white mb-6">Key Features</h2>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {["Responsive Design", "Modern UI/UX", "Performance Optimized", "Cross-browser Compatible"].map(
+                  (feature, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 p-4 bg-white/5 rounded-lg border border-white/10"
+                    >
+                      <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" />
+                      <span className="text-gray-300">{feature}</span>
+                    </div>
+                  ),
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Project Info */}
+            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10">
+              <h3 className="text-xl font-bold text-white mb-6">Project Info</h3>
+
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <CalendarIcon className="w-5 h-5 text-purple-400" />
+                  <div>
+                    <p className="text-sm text-gray-400">Created</p>
+                    <p className="text-white font-medium">Recent Project</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <ClockIcon className="w-5 h-5 text-purple-400" />
+                  <div>
+                    <p className="text-sm text-gray-400">Status</p>
+                    <p className="text-green-400 font-medium">Completed</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Technologies */}
+            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10">
+              <h3 className="text-xl font-bold text-white mb-6">Technologies Used</h3>
+
+              <div className="space-y-3">
+                {project.technologies?.map((tech, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-white/10 hover:border-purple-500/30 transition-colors duration-200"
+                  >
+                    <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" />
+                    <span className="text-gray-300 font-medium">{tech}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10">
+              <h3 className="text-xl font-bold text-white mb-6">Quick Actions</h3>
+
+              <div className="space-y-3">
+                {project.liveLink && (
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                  >
+                    <ExternalLinkIcon className="w-5 h-5" />
+                    View Live Demo
+                  </a>
+                )}
+
+                {project.githubLink && (
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                  >
+                    <GitHubLogoIcon className="w-5 h-5" />
+                    View Source Code
+                  </a>
+                )}
+              </div>
+            </div>
+
+            {/* Contact CTA */}
+            <div className="bg-gradient-to-br from-purple-600/20 to-pink-600/20 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/30">
+              <h3 className="text-xl font-bold text-white mb-3">Interested in Similar Work?</h3>
+              <p className="text-gray-300 text-sm mb-4">
+                Let's discuss your next project and bring your ideas to life.
+              </p>
+              <button className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02]">
+                Get In Touch
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default ProjectDetailsPage
