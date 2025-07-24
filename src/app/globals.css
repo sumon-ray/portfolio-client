@@ -110,17 +110,17 @@
   }
 }
 
-.animate-blob {
+/* .animate-blob {
   animation: blob 15s infinite;
 }
 
 .animation-delay-2000 {
-  animation-delay: 2s;
+  animation-delay: 0ms;
 }
 
 .animation-delay-4000 {
-  animation-delay: 4s;
-}
+  animation-delay: 0ms;
+} */
 
 /* Grid pattern background */
 .bg-grid-pattern {
@@ -173,4 +173,7 @@
   .animate-marquee-vertical {
     animation: marquee-vertical var(--duration) linear infinite;
   }
+}
+html {
+  scroll-behavior: smooth;
 }

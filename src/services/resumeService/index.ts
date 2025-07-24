@@ -4,33 +4,15 @@ export interface ApiResponse<T> {
   data: T;
 }
 
-export const uploadResume = async (
-  file: File
-): Promise<ApiResponse<any> | null> => {
-  const formData = new FormData();
-  formData.append("file", file);
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/resume/upload`, {
-    method: "POST",
-    cache: "no-store",
-
-    body: formData,
-  });
-
-  if (!res.ok) return null;
-
-  const data: ApiResponse<any> = await res.json();
-  return data;
-};
-
-
 export const previewResume = async (): Promise<ApiResponse<any> | null> => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/resume/preview`, {
-      method: "GET",
-      cache: "no-store",
-
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/resume/preview`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) return null;
 
@@ -43,15 +25,15 @@ export const previewResume = async (): Promise<ApiResponse<any> | null> => {
   }
 };
 
-
-
 export const downloadResume = async (): Promise<void> => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/resume/download`, {
-      method: "GET",
-      cache: "no-store",
-
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/resume/download`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) {
       console.error("Failed to download resume: Server returned an error");
@@ -62,7 +44,7 @@ export const downloadResume = async (): Promise<void> => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "resume.pdf"; // You can set a dynamic name here if needed
+    a.download = "resume.pdf"; 
     document.body.appendChild(a);
     a.click();
     a.remove();

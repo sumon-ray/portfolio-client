@@ -32,4 +32,3 @@ export default function RootLayout({
     </html>
   );
 }
-// bg-gradient-to-b from-slate-950 to-slate-900

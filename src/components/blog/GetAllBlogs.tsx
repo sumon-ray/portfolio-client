@@ -3,6 +3,7 @@ import type { BlogType } from "@/app/types/blog"
 import Image from "next/image"
 import Link from "next/link"
 import { CalendarIcon, ClockIcon, ArrowRightIcon } from "@radix-ui/react-icons"
+import { StarIcon } from "lucide-react"
 
 // Helper to check if a URL is valid
 const isValidUrl = (url: string | undefined): boolean => {
@@ -35,8 +36,8 @@ const GetAllBlogs = ({ blogs }: { blogs: BlogType | null }) => {
   return (
     <div className="group relative">
       {/* Glow effect */}
+   
       <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-sm" />
-
       {/* Main card */}
       <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 group-hover:shadow-3xl">
         {/* Blog Image */}

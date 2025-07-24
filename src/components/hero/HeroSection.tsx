@@ -7,13 +7,12 @@ import {
   Linkedin,
   Mail,
   MessageSquare,
-  Twitter,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import AnimatedCounter from "@/components/banner/AnimatedCounter";
+// import AnimatedCounter from "@/components/banner/AnimatedCounter";
 import AnimatedText from "@/components/banner/AnimatedText";
 import FloatingIcons from "@/components/banner/FloatingIcons";
 import { Button } from "@/components/ui/button";
@@ -26,7 +25,7 @@ const HeroSection = () => {
     const getPreview = async () => {
       const res = await previewResume();
       // Ensure res.data is actually a string URL
-      if (res && res.data && typeof res.data === 'string') {
+      if (res && res.data && typeof res.data === "string") {
         setPreviewUrl(res.data);
       } else {
         console.error("Preview resume data is not a valid URL:", res);
@@ -95,7 +94,9 @@ const HeroSection = () => {
               >
                 <Button className="gap-2">
                   <MessageSquare className="h-4 w-4" />
-                  Schedule a meeting
+                  <Link href={"https://zcal.co/sumon-ray/30min"}>
+                    Schedule a meeting
+                  </Link>
                 </Button>
                 {/* Preview Resume Button */}
                 <Button variant="outline" asChild disabled={!previewUrl}>
@@ -126,7 +127,7 @@ const HeroSection = () => {
                 className="flex gap-4 mt-4"
               >
                 <Link
-                  href="https://github.com"
+                  href="https://github.com/sumon-ray"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition-colors"
@@ -135,7 +136,7 @@ const HeroSection = () => {
                   <span className="sr-only">GitHub</span>
                 </Link>
                 <Link
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/sumon60/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition-colors"
@@ -143,17 +144,9 @@ const HeroSection = () => {
                   <Linkedin className="h-5 w-5" />
                   <span className="sr-only">LinkedIn</span>
                 </Link>
+
                 <Link
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Twitter className="h-5 w-5" />
-                  <span className="sr-only">Twitter</span>
-                </Link>
-                <Link
-                  href="mailto:contact@example.com"
+                  href="mailto:sumonray146371@gmail.com"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <Mail className="h-5 w-5" />
@@ -195,30 +188,30 @@ const HeroSection = () => {
   );
 };
 
-interface StatCardProps {
-  value: number;
-  label: string;
-  delay: number;
-  className?: string;
-}
+// interface StatCardProps {
+//   value: number;
+//   label: string;
+//   delay: number;
+//   className?: string;
+// }
 
-function StatCard({ value, label, delay, className }: StatCardProps) {
-  return (
-    <motion.div
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition={{ delay, type: "spring", stiffness: 200, damping: 15 }}
-      className={`rounded-xl p-3 shadow-lg ${className}`}
-    >
-      <div className="flex flex-col items-center">
-        <div className="text-2xl font-bold text-primary flex items-baseline">
-          <AnimatedCounter value={value} duration={2} />
-          <span>+</span>
-        </div>
-        <div className="text-xs text-center text-muted-foreground">{label}</div>
-      </div>
-    </motion.div>
-  );
-}
+// function StatCard({ value, label, delay, className }: StatCardProps) {
+//   return (
+//     <motion.div
+//       initial={{ scale: 0 }}
+//       animate={{ scale: 1 }}
+//       transition={{ delay, type: "spring", stiffness: 200, damping: 15 }}
+//       className={`rounded-xl p-3 shadow-lg ${className}`}
+//     >
+//       <div className="flex flex-col items-center">
+//         <div className="text-2xl font-bold text-primary flex items-baseline">
+//           <AnimatedCounter value={value} duration={2} />
+//           <span>+</span>
+//         </div>
+//         <div className="text-xs text-center text-muted-foreground">{label}</div>
+//       </div>
+//     </motion.div>
+//   );
+// }
 
 export default HeroSection;

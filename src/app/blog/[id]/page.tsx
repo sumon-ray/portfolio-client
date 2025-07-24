@@ -15,6 +15,7 @@ import {
   ChatBubbleIcon,
   ChevronUpIcon,
 } from "@radix-ui/react-icons"
+import Image from "next/image"
 
 const BlogDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const [data, setData] = useState<BlogType | null>(null)
@@ -203,7 +204,9 @@ const BlogDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
           {/* Featured Image */}
           {data.image && (
             <div className="relative rounded-2xl overflow-hidden mb-12 group">
-              <img
+              <Image
+              width={500}
+              height={500}
                 src={data.image || "/placeholder.svg"}
                 alt={data.title}
                 className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
