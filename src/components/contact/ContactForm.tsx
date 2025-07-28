@@ -48,9 +48,8 @@ export default function ContactForm() {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      // For demo purposes, we'll just simulate a successful submission
-      // In production, uncomment the fetch call below
-      /*
+ 
+      
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -58,7 +57,7 @@ export default function ContactForm() {
       })
 
       if (!res.ok) throw new Error('Failed to submit contact form')
-      */
+      
 
       setSuccess("Message sent successfully!");
       setIsFormSubmitted(true);
