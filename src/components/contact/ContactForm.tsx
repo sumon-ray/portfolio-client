@@ -1,15 +1,15 @@
 "use client";
 
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import { CheckCircle, Mail, Send } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { useState, useRef, useEffect } from "react";
-import { motion, useAnimation, AnimatePresence } from "framer-motion";
-import { Send, CheckCircle, Mail } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 
 // Schema validation using Zod
 const contactSchema = z.object({
@@ -48,16 +48,13 @@ export default function ContactForm() {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
- 
-      
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
-      })
+      });
 
-      if (!res.ok) throw new Error('Failed to submit contact form')
-      
+      if (!res.ok) throw new Error("Failed to submit contact form");
 
       setSuccess("Message sent successfully!");
       setIsFormSubmitted(true);
@@ -69,15 +66,14 @@ export default function ContactForm() {
   };
 
   return (
-    <section id='contact' className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 px-4 "> {/* White background */}
-      {/* Remove animated background orbs and dark gradient */}
-      {/* Remove grid pattern overlay if it was too subtle on white or not desired */}
-      {/* <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-[0.02] [background-size:20px_20px]" /> */}
-
-
+    <section
+      id="contact"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 px-4 "
+    >
+      {" "}
+      {/* White background */}
       {/* Floating particles - adjusted for white background */}
       <FloatingParticles />
-
       {/* Content container */}
       <div className="w-full max-w-3xl relative z-10 bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-xl rounded-2xl">
         <AnimatePresence mode="wait">
@@ -99,7 +95,12 @@ export default function ContactForm() {
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ delay: 0.3, type: "spring", stiffness: 200, damping: 15 }}
+                  transition={{
+                    delay: 0.3,
+                    type: "spring",
+                    stiffness: 200,
+                    damping: 15,
+                  }}
                   // Adjusted for light theme: primary accent color, subtle shadow
                   className="w-20 h-20 mx-auto mb-6 rounded-full bg-blue-600 flex items-center justify-center shadow-md transform hover:scale-110 transition-transform duration-300"
                 >
@@ -131,7 +132,8 @@ export default function ContactForm() {
                   // Text color for light theme
                   className=" max-w-md mx-auto text-lg leading-relaxed"
                 >
-                  Have a project in mind or want to discuss opportunities? Send me a message and I'll get back to you soon!
+                  Have a project in mind or want to discuss opportunities? Send
+                  me a message and I'll get back to you soon!
                 </motion.p>
               </div>
 
@@ -155,7 +157,11 @@ export default function ContactForm() {
                     {/* Border glow on focus for light theme */}
                     <div className="absolute inset-0 rounded-xl border border-gray-300 group-focus-within:border-blue-600 group-focus-within:shadow-md pointer-events-none transition-all duration-300" />
                   </div>
-                  {errors.email && <p className="text-red-600 text-sm mt-2 ml-2">{errors.email.message}</p>}
+                  {errors.email && (
+                    <p className="text-red-600 text-sm mt-2 ml-2">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="group">
@@ -170,7 +176,11 @@ export default function ContactForm() {
                     {/* Border glow on focus for light theme */}
                     <div className="absolute inset-0 rounded-xl border border-gray-300 group-focus-within:border-blue-600 group-focus-within:shadow-md pointer-events-none transition-all duration-300" />
                   </div>
-                  {errors.message && <p className="text-red-600 text-sm mt-2 ml-2">{errors.message.message}</p>}
+                  {errors.message && (
+                    <p className="text-red-600 text-sm mt-2 ml-2">
+                      {errors.message.message}
+                    </p>
+                  )}
                 </div>
 
                 <Button
@@ -221,7 +231,11 @@ export default function ContactForm() {
   );
 }
 
-function SuccessMessage({ setIsFormSubmitted }: { setIsFormSubmitted: (value: boolean) => void }) {
+function SuccessMessage({
+  setIsFormSubmitted,
+}: {
+  setIsFormSubmitted: (value: boolean) => void;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -266,13 +280,13 @@ function SuccessMessage({ setIsFormSubmitted }: { setIsFormSubmitted: (value: bo
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.6 }}
       >
-        <Button
+        {/* <Button
           onClick={() => setIsFormSubmitted(false)}
           // Button styles for light theme: subtle background, primary accent text, light border
           className=" hover:bg-gray-200 text-blue-600 border border-gray-300 rounded-xl px-8 py-4 text-lg transition-all duration-300 hover:shadow-md"
         >
           Send Another Message
-        </Button>
+        </Button> */}
       </motion.div>
     </motion.div>
   );
@@ -299,11 +313,19 @@ function FloatingParticles() {
               height: size,
               left: `${initialX}%`,
               top: `${initialY}%`,
-              boxShadow: '0 0 5px rgba(0,0,0,0.1)', // Softer glow
+              boxShadow: "0 0 5px rgba(0,0,0,0.1)", // Softer glow
             }}
             animate={{
-              x: [Math.random() * 100 - 50, Math.random() * 100 - 50, Math.random() * 100 - 50],
-              y: [Math.random() * 100 - 50, Math.random() * 100 - 50, Math.random() * 100 - 50],
+              x: [
+                Math.random() * 100 - 50,
+                Math.random() * 100 - 50,
+                Math.random() * 100 - 50,
+              ],
+              y: [
+                Math.random() * 100 - 50,
+                Math.random() * 100 - 50,
+                Math.random() * 100 - 50,
+              ],
               opacity: [0.7, 0.9, 0.7], // Subtle opacity animation
               scale: [1, 1.1, 1], // Subtle scale animation
             }}
