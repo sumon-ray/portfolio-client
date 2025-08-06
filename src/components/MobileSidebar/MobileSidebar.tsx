@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {  CalendarCheck2 , Contact, Handshake, Home, Mail, Plus, User, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import img from "../../../public/favicon.png";
+import img from "../../../public/profile.png";
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -12,11 +12,11 @@ interface MobileSidebarProps {
 }
 
 const links = [
-  { label: "Home", href: "/", icon: Home },
-  { label: "Projects", href: "/projects", icon: CalendarCheck2  },
-  { label: "About", href: "/about", icon: Handshake },
-  { label: "skills", href: "/skills", icon: Contact },
-  { label: "contact", href: "/contact", icon: User },
+  { label: "Home", href: "#", icon: Home },
+  { label: "Projects", href: "#projects", icon: CalendarCheck2  },
+  { label: "About", href: "#aboutme", icon: Handshake },
+  { label: "skills", href: "#skills", icon: Contact },
+  { label: "contact", href: "#contact", icon: User },
 ];
 
 export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
@@ -30,7 +30,7 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm "
+            className="absolute inset-0 bg-[#171b39] backdrop-blur-sm "
             onClick={onClose}
           />
 
@@ -40,7 +40,7 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="relative z-50 bg-[#322f2f] w-72 text-white p-5 shadow-xl h-screen"
+            className="relative z-50 bg-[#171b39] w-72 text-white p-5 shadow-xl h-screen"
       >
             <div className="flex items-center justify-between pb-3 mb-6 border-b">
               <Image src={img} alt="Logo" width={40} height={40} />

@@ -61,10 +61,13 @@ const AllSkillLists = ({ mySkills }: { mySkills: ISkill[] }) => {
   }
 
   return (
-    <div id="skills" className="min-h-screen bg-[#171b39] py-8 sm:py-16">
+
+
+
+    <div id="skills" className="  bg-[#171b39] py-8 ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
-        <div className="text-center mb-12 sm:mb-16 space-y-4 sm:space-y-6">
+        <div className="text-center mb-12   space-y-4 sm:space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-600/20 text-blue-300 rounded-full text-xs sm:text-sm font-medium border border-blue-500/30">
             <Trophy className="w-3 h-3 sm:w-4 sm:h-4" />
             My Skills & Technologies

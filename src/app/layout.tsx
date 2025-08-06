@@ -26,6 +26,8 @@ export default function RootLayout({
       <body className={inter.className}>
         {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange> */}
         {/* <Navbar /> */}
+
+     
         <main className=" text-white bg-[#171b39] ">{children}</main>
         {/* </ThemeProvider> */}
         <Toaster position="top-right" richColors />

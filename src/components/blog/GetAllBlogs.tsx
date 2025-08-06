@@ -34,7 +34,7 @@ const GetAllBlogs = ({ blogs }: { blogs: BlogType | null }) => {
   }
 
   return (
-    <div className="group relative">
+    <div id="blogs" className="group relative  "> 
       {/* Glow effect */}
    
       <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-sm" />

@@ -41,7 +41,7 @@ const SafeImage = ({
 
 const ProjectCard = ({ project, index }: { project: ProjectType; index: number }) => {
   return (
-    <div className="group relative">
+    <div id="projects" className="group relative">
       {/* Glow effect */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-sm" />
 
@@ -151,7 +151,7 @@ const GetAllProjects = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#171b39]">
+      <div  className=" min-h-screen bg-[#171b39]">
         <div className="container mx-auto px-4 py-12">
           <div className="mb-12 text-center space-y-4">
             <Skeleton className="h-10 w-64 mx-auto bg-white/20" />

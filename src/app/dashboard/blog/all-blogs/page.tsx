@@ -9,7 +9,7 @@ const allBlogPage = async () => {
 
   return (
     <div className="">
-         <div className="space-y-4 text-center">
+         <div className="space-y-4 mt-14  text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600/20 text-purple-300 rounded-full text-sm font-medium border border-purple-500/30">
               <StarIcon className="w-4 h-4" />
             Blogs
