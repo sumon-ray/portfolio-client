@@ -1,14 +1,13 @@
 "use client";
 
-import { Menu, Moon, Sun } from "lucide-react";
-import Link from "next/link";
-import { useEffect, useState, useRef } from "react"; // useRef imported, though not directly used in this solution, it's good to have for general component use if needed
 import { motion } from "framer-motion";
+import { Menu } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react"; // useRef imported, though not directly used in this solution, it's good to have for general component use if needed
 
-import { useTheme } from "next-themes";
-import MobileSidebar from "../MobileSidebar/MobileSidebar";
+// import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-
+import MobileSidebar from "../MobileSidebar/MobileSidebar";
 // 1. Updated navLinks:
 //    - Changed hrefs to hash links (#) for in-page navigation.
 //    - Added an 'id' property matching the section's HTML ID.
@@ -23,7 +22,7 @@ const navLinks = [
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { theme, setTheme } = useTheme();
+  // const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   // 2. State to hold the ID of the currently active section
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -50,7 +49,7 @@ export default function Navbar() {
     // Options for the Intersection Observer
     const observerOptions = {
       root: null, // The viewport
-      rootMargin: '0px', // No margin, element just needs to enter viewport
+      rootMargin: "0px", // No margin, element just needs to enter viewport
       threshold: 0.5, // 50% of the target is visible
     };
 
@@ -81,7 +80,7 @@ export default function Navbar() {
       });
       observer.disconnect();
     };
-  }, [mounted]); // Rerun this effect only when the mounted state changes (ensuring DOM is ready)
+  }, [mounted]);
 
   // Prevent hydration mismatch: Essential for client-side functionality like theme toggling and DOM interaction
   useEffect(() => {
@@ -93,7 +92,9 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
-        scrolled ? "bg-[#171b3991] text-white backdrop-blur-sm shadow-md shadow-[#3a427c]" : " bg-[#171b39] text-white backdrop-blur-sm shadow-md shadow-[#3a427c]"
+        scrolled
+          ? "bg-[#171b3991] text-white backdrop-blur-sm shadow-md shadow-[#3a427c]"
+          : " bg-[#171b39] text-white backdrop-blur-sm shadow-md shadow-[#3a427c]"
       }`}
     >
       <div className="container flex items-center justify-between h-16 px-4 mx-auto md:px-8">
@@ -106,7 +107,7 @@ export default function Navbar() {
         >
           <Link href="/" className="flex items-center">
             {/* <Image src="/logo.png" alt="Logo" width={40} height={40} className="object-contain" priority /> */}
-             {/* <span className="text-xl font-bold">Sumon</span> Placeholder logo */}
+            {/* <span className="text-xl font-bold">Sumon</span> Placeholder logo */}
           </Link>
         </motion.div>
 
@@ -114,38 +115,49 @@ export default function Navbar() {
         <motion.ul
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, staggerChildren: 0.1, delayChildren: 0.2 }}
+          transition={{
+            duration: 0.5,
+            staggerChildren: 0.1,
+            delayChildren: 0.2,
+          }}
           className="hidden mx-auto gap-1 md:gap-2 lg:gap-6 text-sm font-medium md:flex"
         >
-          {navLinks.map((link, index) => ( // Use the updated navLinks array
-            <motion.li
-              key={link.id} // Use link.id as the key for better React performance
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 * index }}
-            >
-              <Link
-                href={link.href}
-                className={`relative px-3 py-2 rounded-md transition-all duration-300 hover:text-primary ${
-                  // 4. Apply active class if the current link's ID matches the activeSection state
-                  activeSection === link.id ? "text-primary font-semibold" : ""
-                }`}
-                // You can add scroll={false} to Next.js Link for hash links
-                // if you want to manage scroll behavior manually or avoid default behavior.
-                // scroll={false}
+          {navLinks.map(
+            (
+              link,
+              index // Use the updated navLinks array
+            ) => (
+              <motion.li
+                key={link.id} // Use link.id as the key for better React performance
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 * index }}
               >
-                {link.label}
-                {/* Active indicator span: only show if this link is active */}
-                {activeSection === link.id && (
-                  <motion.span
-                    layoutId="navbar-active-indicator" // Give it a unique layoutId for Framer Motion transitions
-                    className="absolute inset-0 z-[-1] rounded-md bg-primary/10"
-                    transition={{ type: "spring", duration: 0.6 }}
-                  />
-                )}
-              </Link>
-            </motion.li>
-          ))}
+                <Link
+                  href={link.href}
+                  className={`relative px-3 py-2 rounded-md transition-all duration-300 hover:text-primary ${
+                    // 4. Apply active class if the current link's ID matches the activeSection state
+                    activeSection === link.id
+                      ? "text-primary font-semibold"
+                      : ""
+                  }`}
+                  // You can add scroll={false} to Next.js Link for hash links
+                  // if you want to manage scroll behavior manually or avoid default behavior.
+                  // scroll={false}
+                >
+                  {link.label}
+                  {/* Active indicator span: only show if this link is active */}
+                  {activeSection === link.id && (
+                    <motion.span
+                      layoutId="navbar-active-indicator" // Give it a unique layoutId for Framer Motion transitions
+                      className="absolute inset-0 z-[-1] rounded-md bg-primary/10"
+                      transition={{ type: "spring", duration: 0.6 }}
+                    />
+                  )}
+                </Link>
+              </motion.li>
+            )
+          )}
         </motion.ul>
 
         {/* Right side buttons */}
@@ -156,7 +168,7 @@ export default function Navbar() {
           className="flex items-center gap-2"
         >
           {/* Theme toggle */}
-          <Button
+          {/* <Button
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -165,7 +177,22 @@ export default function Navbar() {
           >
             <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
             <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          </Button> */}
+          <Button variant="default" className=" rounded-full">
+            <Link
+              href="https://my-journey-kappa.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              My Journey
+            </Link>
           </Button>
+          {/* <div className="flex mx-4 justify-center py-20">
+      <Button2 variant="destructive" className="bg-[#171b3991]">
+        <User className="w-8 h-4 mr-2" />
+        My Journey
+      </Button2>
+    </div> */}
 
           {/* Mobile Menu Toggle */}
           <Button
@@ -181,7 +208,10 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Sidebar */}
-      <MobileSidebar isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
+      <MobileSidebar
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+      />
     </header>
   );
 }

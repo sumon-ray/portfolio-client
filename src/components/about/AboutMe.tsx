@@ -8,7 +8,7 @@ export default function AboutMe() {
     {
       id: 1,
       degree: "BBA In Management",
-      institution: "Mawlana Bhashani Science University",
+      institution: "Mawlana Bhashani Science And Technology University",
       period: "2022 - 2026",
       location: "Tangail, Dhaka",
       status: "Current",

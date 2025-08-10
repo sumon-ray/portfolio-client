@@ -130,7 +130,7 @@ const HeroSection = () => {
                   href="https://github.com/sumon-ray"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-blue-300 transition-colors"
                 >
                   <Github className="h-5 w-5" />
                   <span className="sr-only">GitHub</span>
@@ -139,7 +139,7 @@ const HeroSection = () => {
                   href="https://www.linkedin.com/in/sumon60/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-blue-300 transition-colors"
                 >
                   <Linkedin className="h-5 w-5" />
                   <span className="sr-only">LinkedIn</span>
@@ -147,7 +147,7 @@ const HeroSection = () => {
 
                 <Link
                   href="mailto:sumonray146371@gmail.com"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-blue-300 transition-colors"
                 >
                   <Mail className="h-5 w-5" />
                   <span className="sr-only">Email</span>

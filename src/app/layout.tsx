@@ -3,9 +3,9 @@ import { Inter } from "next/font/google";
 import type React from "react";
 import "./globals.css";
 // import { ThemeProvider } from "@/components/theme-provider"
-// import Navbar from "@/components/shared/Navbar";
 import { Toaster } from "sonner";
-import SplashCursor from "../../components/nurui/splash-cursor";
+import ElectricCursor from "../../components/nurui/electric-cursor";
+// import SplashCursor from "../../components/nurui/splash-cursor";
 // import Navbar from "@/components/Navbar/Navbar"
 
 const inter = Inter({ subsets: ["latin"] });
@@ -31,7 +31,8 @@ export default function RootLayout({
         <main className=" text-white bg-[#171b39] ">{children}</main>
         {/* </ThemeProvider> */}
         <Toaster position="top-right" richColors />
-        <SplashCursor />
+        {/* <SplashCursor /> */}
+        <ElectricCursor />
       </body>
     </html>
   );
